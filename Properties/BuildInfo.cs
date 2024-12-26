@@ -10,5 +10,5 @@ internal static class BuildInfo
     public const string GAMEVERSION = null;
     public const string DOWNLOADLINK = "https://github.com/MrSago/MiSide-Sit-Unlocker";
     public const string PACKAGE = "com.situnlocker.miside";
-    public const string GUID = "87b48efc-7b1f-4d2d-8105-c6fad0116f84";
+    public const string GUID = "e2cf0c0d-5d3e-489f-8fa2-45a5814a46c2";
 }
