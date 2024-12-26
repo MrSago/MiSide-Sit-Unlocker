@@ -1,0 +1,87 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ubuntu-latest
+
+    env:
+      MOD_NAME: SitUnlocker
+      RELEASE_NAME: Sit-Unlocker-${{ github.ref }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "6.x.x"
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build ML configuration
+        run: dotnet build --configuration ML --no-restore
+
+      - name: Build BIE configuration
+        run: dotnet build --configuration BIE --no-restore
+
+      - name: Create artifacts directory
+        run: mkdir -p ./artifacts
+
+      - name: Create ML directory structure
+        run: |
+          mkdir -p ./artifacts/ML/Mods
+          cp ./bin/Release/${{ env.MOD_NAME }}.MelonLoader.dll ./artifacts/ML/Mods/
+
+      - name: Create BIE directory structure
+        run: |
+          mkdir -p ./artifacts/BIE/BepInEx/plugins/${{ env.MOD_NAME }}
+          cp ./bin/Release/${{ env.MOD_NAME }}.BepInEx.dll ./artifacts/BIE/BepInEx/plugins/${{ env.MOD_NAME }}/
+
+      - name: Create ML zip
+        run: |
+          cd ./artifacts/ML
+          zip -r ../../${{ env.MOD_NAME }}.MelonLoader.zip ./*
+
+      - name: Create BIE zip
+        run: |
+          cd ./artifacts/BIE
+          zip -r ../../${{ env.MOD_NAME }}.BepInEx.zip ./*
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ env.RELEASE_NAME }}
+          draft: false
+          prerelease: false
+
+      - name: Upload ML release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ env.MOD_NAME }}.MelonLoader.zip
+          asset_name: ${{ env.MOD_NAME }}.MelonLoader.zip
+          asset_content_type: application/zip
+
+      - name: Upload BIE release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ env.MOD_NAME }}.BepInEx.zip
+          asset_name: ${{ env.MOD_NAME }}.BepInEx.zip
+          asset_content_type: application/zip

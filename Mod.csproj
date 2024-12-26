@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>Mod</AssemblyName>
+    <Configurations>ML;BIE</Configurations>
+  </PropertyGroup>
+
+  <!--Configurations-->
+  <PropertyGroup Condition="'$(Configuration)'=='ML'">
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>ML</DefineConstants>
+    <AssemblyName>SitUnlocker.MelonLoader</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='BIE'">
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>BIE</DefineConstants>
+    <AssemblyName>SitUnlocker.BepInEx</AssemblyName>
+  </PropertyGroup>
+  <!---->
+
+  <!--References-->
+  <ItemGroup Condition="'$(Configuration)'=='ML'">
+    <Content Include="$(ProjectDir)Assemblies\*">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Reference Include="$(ProjectDir)Assemblies\MelonLoader\*.dll">
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)'=='BIE'">
+    <Content Include="$(ProjectDir)Assemblies\*">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Reference Include="$(ProjectDir)Assemblies\BepInEx\*.dll">
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <!---->
+  
+</Project>
