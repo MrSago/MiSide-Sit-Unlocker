@@ -39,7 +39,7 @@ public static class SitUnlocker
             ModCore.Loader.Update += OnUpdate;
         }
 
-        ModCore.Log("Mod Initialized");
+        ModCore.Log("Initialized");
     }
 
     public static void SetPlayerSitState(bool value)
