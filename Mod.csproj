@@ -32,7 +32,7 @@
     <Content Include="$(ProjectDir)Assemblies\*">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
-    <Reference Include="$(ProjectDir)Assemblies\MelonLoader\*.dll">
+    <Reference Include="$(ProjectDir)Assemblies\Loaders\MelonLoader\*.dll">
       <Private>false</Private>
     </Reference>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <Content Include="$(ProjectDir)Assemblies\*">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
-    <Reference Include="$(ProjectDir)Assemblies\BepInEx\*.dll">
+    <Reference Include="$(ProjectDir)Assemblies\Loaders\BepInEx\*.dll">
       <Private>false</Private>
     </Reference>
   </ItemGroup>
