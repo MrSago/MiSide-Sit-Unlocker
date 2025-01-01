@@ -21,10 +21,10 @@
   - [MelonLoader](https://github.com/LavaGang/MelonLoader/releases)
     - Просто используйте **установщик** последней версии
 
-- Скачать [последнюю версию мода](https://github.com/MrSago/MiSide-Native-Resolution-Option/releases/latest) **под нужный загрузчик:**
+- Скачать [последнюю версию мода](https://github.com/MrSago/MiSide-Sit-Unlocker/releases/latest) **под нужный загрузчик:**
 
-  - NativeResolutionOption.BepInEx.zip - для BepInEx
-  - NativeResolutionOption.MelonLoader.zip - для MelonLoader
+  - FlashlightIncreaser.BepInEx.zip - для BepInEx
+  - FlashlightIncreaser.MelonLoader.zip - для MelonLoader
 
 - Извлечь файлы из архива в папку с игрой
 
@@ -44,10 +44,10 @@ Unlocks the ability to sit down with the LCtrl (left control) key.
   - [MelonLoader](https://github.com/LavaGang/MelonLoader/releases)
     - Just use the latest version **installer**
 
-- Download [the latest version of the mod](https://github.com/MrSago/MiSide-Native-Resolution-Option/releases/latest) for **the required loader**:
+- Download [the latest version of the mod](https://github.com/MrSago/MiSide-Sit-Unlocker/releases/latest) for **the required loader**:
 
-  - NativeResolutionOption.BepInEx.zip - for the BepInEx
-  - NativeResolutionOption.MelonLoader.zip - for the MelonLoader
+  - FlashlightIncreaser.BepInEx.zip - for the BepInEx
+  - FlashlightIncreaser.MelonLoader.zip - for the MelonLoader
 
 - Extract files from the archive into the game folder
 
