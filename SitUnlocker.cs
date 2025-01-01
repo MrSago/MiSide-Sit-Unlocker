@@ -30,6 +30,8 @@ public static class SitUnlocker
         }
     }
 
+    private static PlayerMove? _playerMove;
+
     public static void Init()
     {
         if (Enabled)
@@ -44,11 +46,13 @@ public static class SitUnlocker
     {
         try
         {
-            PlayerMove? playerMove = UnityEngine.Object.FindObjectOfType<PlayerMove>();
-            if (playerMove is not null)
+            PlayerMove? playerMove = GetPlayerMove();
+            if (playerMove == null)
             {
-                playerMove.canSit = value;
+                return;
             }
+
+            playerMove.canSit = value;
         }
         catch (Exception e)
         {
@@ -62,5 +66,19 @@ public static class SitUnlocker
         {
             SetPlayerSitState(true);
         }
+    }
+
+    private static PlayerMove? GetPlayerMove()
+    {
+        if (!IsPlayerMoveValid())
+        {
+            _playerMove = GameObject.Find("Player")?.GetComponent<PlayerMove>();
+        }
+        return _playerMove;
+    }
+
+    private static bool IsPlayerMoveValid()
+    {
+        return _playerMove != null && _playerMove.gameObject != null;
     }
 }
